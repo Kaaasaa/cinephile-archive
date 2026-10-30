@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --bg-primary: #171412;
+  --bg-secondary: #211D1A;
+  --text-primary: #E7E2DD;
+  --text-secondary: #9C948B;
+  --text-camel: #A88F76;
+}
+
+body {
+  background-color: #171412;
+  color: #E7E2DD;
+  font-family: "Charter", "Iowan Old Style", "Palatino Linotype", "Georgia", "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+  font-weight: 300;
+  line-height: 1.75;
+  letter-spacing: 0.025em;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.font-editorial {
+  font-family: "Charter", "Iowan Old Style", "Palatino Linotype", "Georgia", "Noto Serif SC", "Songti SC", serif;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+}
+
+.font-ui {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", sans-serif;
+  font-weight: 350;
+  letter-spacing: 0.03em;
+}
+
+/* Snappy 240ms ink-link transitions (no lag, no dragging feeling) */
+.ink-link {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  color: #9C948B;
+  font-weight: 350;
+  background: transparent !important;
+  border: none !important;
+  padding: 0;
+  transition: color 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ink-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background-color: #A88F76;
+  opacity: 0;
+  transform: scaleX(0.4);
+  transform-origin: left center;
+  transition:
+    opacity 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ink-link:hover,
+.ink-link-active {
+  color: #A88F76;
+  font-weight: 420;
+}
+
+.ink-link:hover::after,
+.ink-link-active::after {
+  opacity: 0.9;
+  transform: scaleX(1);
+}
+
+/* Frameless inline text input: instant focus line with zero repaint overhead */
+.ink-input {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: #E7E2DD;
+  font-weight: 350;
+  padding: 2px 0;
+  transition: border-color 0.22s ease, color 0.22s ease;
+}
+
+.ink-input::placeholder {
+  color: #9C948B;
+  opacity: 0.55;
+}
+
+.ink-input:focus {
+  border-bottom-color: #A88F76 !important;
+}
+
+/* GPU-accelerated poster opacity without heavy pixel shader rasterization */
+.archive-poster-img {
+  opacity: 0.92;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
+}
+
+.group:hover .archive-poster-img {
+  opacity: 1;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 148, 139, 0.22);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 143, 118, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
